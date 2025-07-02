@@ -2,14 +2,49 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 'use client';
 
+import { useRef, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Script from 'next/script';
 
 export default function Home() {
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    // Ensure it starts muted (so autoplay works)
+    audio.muted = true;
+    audio.play().catch(() => {
+      /* autoplay might still be blocked, but that’s fine */
+    });
+
+    // On first user interaction, unmute & play
+    const handleFirstInteraction = () => {
+      audio.muted = false;
+      audio.play();
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+    };
+
+    window.addEventListener('click', handleFirstInteraction);
+    window.addEventListener('touchstart', handleFirstInteraction);
+
+    return () => {
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+    };
+  }, []);
+
   return (
     <>
-      <audio controls autoPlay muted playsInline>
+      <audio
+        ref={audioRef}
+        autoPlay
+        playsInline
+        // controls // <-- remove controls if you don't want the UI
+      >
         <source src="musics/background-1.mp3" />
       </audio>
 

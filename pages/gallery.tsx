@@ -196,7 +196,7 @@ export default function Gallery() {
 
   return (
     <>
-      <audio controls autoPlay loop playsInline>
+      <audio autoPlay loop playsInline>
         <source src="musics/background-2.mp3" />
       </audio>
       <Head>
