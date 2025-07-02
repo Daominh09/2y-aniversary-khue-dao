@@ -4,7 +4,6 @@ var clientWidth = $(window).width();
 var clientHeight = $(window).height();
 
 $(function () {
-    // setup garden
 	$loveHeart = $("#loveHeart");
 	offsetX = $loveHeart.width() / 2;
 	offsetY = $loveHeart.height() / 2 - 55;
@@ -21,7 +20,6 @@ $(function () {
 	$("#content").css("margin-top", Math.max(($window.height() - $("#content").height()) / 2, 10));
 	$("#content").css("margin-left", Math.max(($window.width() - $("#content").width()) / 2, 10));
 
-    // renderLoop
     setInterval(function () {
         garden.render();
     }, Garden.options.growSpeed);

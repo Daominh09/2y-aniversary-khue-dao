@@ -1,13 +1,14 @@
 import Head from 'next/head'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
 import styles from '../styles/gallery.module.css'
+
 
 const photos = [
   {
     file: '01.png',
-    desc: 'First time we cook',       // description
-    info: 'Cau Giay, July 13, 2023',   // location & formatted date
+    desc: 'First time we cook',       
+    info: 'Cau Giay, July 13, 2023',   
   },
   {
     file: '02.png',
@@ -139,12 +140,9 @@ const photos = [
     desc: 'Google',
     info: 'New York City, June 2, 2025'
   },
-  
-  // …add more objects here…
 ]
 
 
-// Animation variants
 const containerVariants = {
   hidden: {},
   visible: {
@@ -163,11 +161,19 @@ export default function Gallery() {
   const [noPos, setNoPos] = useState({ top: '10%', left: '50%' })
   const [result, setResult] = useState('')
 
-  const onSubmit = async (event) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setResult('Sending....')
-    const formData = new FormData(event.target)
-    formData.append('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY)
+    setResult('Sending…')
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+    if (!accessKey) {
+      console.error('Missing WEB3FORMS access key')
+      setResult('Configuration error: missing API key')
+      return
+    }
+
+    const formData = new FormData(event.currentTarget)
+    formData.append('access_key', accessKey)
 
     try {
       const resp = await fetch('https://api.web3forms.com/submit', {
@@ -177,7 +183,7 @@ export default function Gallery() {
       const data = await resp.json()
       if (data.success) {
         setResult('Form Submitted Successfully')
-        event.target.reset()
+        event.currentTarget.reset()
       } else {
         console.error('Error', data)
         setResult(data.message || 'Submission failed')
@@ -243,7 +249,10 @@ export default function Gallery() {
                 <button
                   type="button"
                   className={styles.noButton}
-                  style={{ '--no-top': noPos.top, '--no-left': noPos.left }}
+                  style={{
+                    '--no-top': noPos.top,
+                    '--no-left': noPos.left,
+                  } as React.CSSProperties}
                   onMouseEnter={() =>
                     setNoPos({
                       top: `${Math.random() * 60 + 10}%`,
