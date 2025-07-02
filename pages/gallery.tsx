@@ -84,13 +84,16 @@ export default function Gallery() {
   const handleUploadSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const form = event.currentTarget
-    const fileInput = form.elements.namedItem('photo') as HTMLInputElement
-    const descInput = form.elements.namedItem('desc') as HTMLInputElement
-    const infoInput = form.elements.namedItem('info') as HTMLInputElement
-    if (fileInput.files?.[0]) {
-      const previewUrl = URL.createObjectURL(fileInput.files[0])
-      setPhotos(prev => [...prev, { file: previewUrl, desc: descInput.value, info: infoInput.value }])
+    const formData = new FormData(form)
+    const file = formData.get('photo')
+    const desc = formData.get('desc')?.toString() || ''
+    const info = formData.get('info')?.toString() || ''
+
+    if (file instanceof File) {
+      const previewUrl = URL.createObjectURL(file)
+      setPhotos(prev => [...prev, { file: previewUrl, desc, info }])
       form.reset()
+      setShowCommitForm(false)
       setShowUploadForm(false)
       setShowQuestion(false)
       setShowAnniversary(true)
