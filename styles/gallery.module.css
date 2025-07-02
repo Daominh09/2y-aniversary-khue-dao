@@ -1,0 +1,161 @@
+
+.galleryTitle {
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #b33;
+  position: relative;
+}
+.galleryTitle::after {
+  content: '❤';
+  margin-left: 0.5rem;
+  color: #e66;
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.galleryItem {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+.galleryItem:hover {
+  transform: translateY(-5px);
+}
+
+.galleryImage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;  
+  object-fit: cover;
+}
+
+.galleryCaption {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.description {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.meta {
+  font-size: 0.875rem;
+  color: #666;
+  font-style: italic;
+}
+
+/* Commitment form & prompt styles */
+.questionContainer {
+  text-align: center;
+  margin-top: 2rem;
+  position: relative;
+  padding: 1rem;
+}
+
+.questionText {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.buttonGroup {
+  position: relative;
+  height: 3rem;
+}
+
+.yesButton,
+.noButton {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.yesButton {
+  background-color: #b33;
+  color: #fff;
+  margin-right: 1rem;
+}
+
+.noButton {
+  background-color: #ccc;
+  color: #333;
+  position: absolute;
+  top: var(--no-top, 10%);
+  left: var(--no-left, 50%);
+  transition: top 0.1s ease, left 0.1s ease;
+}
+
+.commitmentForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.formField {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+}
+
+.formField:focus {
+  border-color: #b33;
+  box-shadow: 0 0 0 2px rgba(179, 51, 51, 0.2);
+}
+
+.commitmentForm textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+
+.submitButton {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #b33;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover {
+  background-color: #922;
+}
+
+.resultMessage {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #b33;
+}
