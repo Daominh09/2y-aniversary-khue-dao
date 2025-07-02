@@ -159,3 +159,108 @@
   font-size: 0.9rem;
   color: #b33;
 }
+
+/* Upload form styles */
+.uploadForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  max-width: 500px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.uploadForm p {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.uploadForm input[type="file"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px dashed #ddd;
+  border-radius: 6px;
+  background-color: #fafafa;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+  text-align: center;
+}
+
+.uploadForm input[type="file"]:hover {
+  border-color: #b33;
+  background-color: #fff;
+}
+
+.uploadForm input[type="file"]::file-selector-button {
+  display: none;
+}
+
+.uploadForm input[type="text"],
+.uploadForm input[type="email"],
+.uploadForm textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+}
+
+.uploadForm input:focus,
+.uploadForm textarea:focus {
+  border-color: #b33;
+  box-shadow: 0 0 0 2px rgba(179, 51, 51, 0.2);
+}
+
+.uploadForm .submitButton {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #b33;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.uploadForm .submitButton:hover {
+  background-color: #922;
+}
+
+/* Anniversary message */
+.anniversaryMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  margin-top: 2rem;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.anniversaryMessage h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  color: #d93a6e;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  margin: 0;
+  position: relative;
+  animation: pop 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pop {
+  0%   { transform: scale(0.5); }
+  70%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
