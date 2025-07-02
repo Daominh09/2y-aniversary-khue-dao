@@ -9,7 +9,7 @@ import Script from 'next/script';
 export default function Home() {
   return (
     <>
-      <audio controls autoPlay playsInline>
+      <audio controls autoPlay muted playsInline>
         <source src="musics/background-1.mp3" />
       </audio>
 
